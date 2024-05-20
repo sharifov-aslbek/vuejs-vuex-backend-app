@@ -36,6 +36,17 @@ const actions = {
          })
          .catch(() => context.commit("controlArticleFailure"))
       })
+   },
+   updateHandler(context , data) {
+      return new Promise((resolve) => {
+         context.commit("controlArticleStart")
+         ArticleService.updateArticle(data.article, data.slug)
+         .then(() => {
+            resolve()
+            context.commit("controlArticleSuccess")
+         })
+         .catch(() => context.commit("controlArticleFailure"))
+      })
    }
 }
 

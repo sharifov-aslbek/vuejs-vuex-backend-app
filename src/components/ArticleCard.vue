@@ -13,7 +13,7 @@
              <button type="button" class="btn btn-sm btn-outline-secondary" @click='navigateHandler'>Read Article</button>
              <button v-if="article.author.username == user.username" type="button" class="btn btn-sm btn-outline-danger" @click='deleteArticleHandler' :disabled="isLoading">Delete</button>
 
-             <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+             <button type="button" v-if="article.author.username == user.username" class="btn btn-sm btn-outline-primary" @click="navigateEditHandler">Edit</button>
            </div>
            <small class="text-body-secondary">{{ new Date(article.createdAt).toLocaleString("uzb") }}</small>
          </div>
@@ -40,8 +40,9 @@ export default {
     },
     deleteArticleHandler() {
       this.$store.dispatch('deleteArticle' , this.article.slug).then(() => this.$store.dispatch("articles"))
-      
-
+    },
+    navigateEditHandler() {
+      return this.$router.push(`/edit-article/${this.article.slug}`)
     }
    }
 }
