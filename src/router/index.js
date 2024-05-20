@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import {HomeView, Register , Login , ArticleDetail} from '@/views'
+import {HomeView, Register , Login , ArticleDetail , CreateArticle} from '@/views'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/article/:slug',
       name: 'article-detail',
       component: ArticleDetail
+    },
+    {
+      path: '/create-article',
+      name: 'create-article',
+      component: CreateArticle
     }
 
   ]

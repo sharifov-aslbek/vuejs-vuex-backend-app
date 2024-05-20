@@ -11,6 +11,8 @@
          <div class="d-flex justify-content-between align-items-center">
            <div class="btn-group">
              <button type="button" class="btn btn-sm btn-outline-secondary" @click='navigateHandler'>Read Article</button>
+             <button v-if="article.author.username == user.username" type="button" class="btn btn-sm btn-outline-danger" @click='deleteArticleHandler' :disabled="isLoading">Delete</button>
+
              <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
            </div>
            <small class="text-body-secondary">{{ new Date(article.createdAt).toLocaleString("uzb") }}</small>
@@ -21,15 +23,25 @@
 </template>
 
 <script>
-
-
+import { mapState } from 'vuex';
 export default {
    props: {
       article: [Object , String]
    },
+   computed: {
+      ...mapState({
+        user: state => state.auth.user,
+        isLoading: state => state.control.isLoading
+      })
+   },
    methods: {
     navigateHandler() {
       return this.$router.push(`/article/${this.article.slug}`)
+    },
+    deleteArticleHandler() {
+      this.$store.dispatch('deleteArticle' , this.article.slug).then(() => this.$store.dispatch("articles"))
+      
+
     }
    }
 }

@@ -7,6 +7,7 @@
 
       <nav class="nav">
          <template v-if="isLoggedIn">
+            <RouterLink :to="{name: 'create-article'}" class="me-3 py-2 link-body-emphass text-decoration-none">Create Article</RouterLink>
             <RouterLink :to="{name: 'home'}" class="me-3 py-2 link-body-emphasis text-decoration-none">{{ currentUser.username }}</RouterLink>
                <a href="#" class="me-3 text-decoration-none" @click="logout">LogOut</a>
          </template>

@@ -1,4 +1,4 @@
 import Input from './Input.vue'
 import Button from './Button.vue'
-
-export default [Button, Input]
+import TextArea from './TextArea.vue'
+export default [Button, Input , TextArea]
